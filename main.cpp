@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	// LightSource ls1(100, 100, 100, 100, 0xfd, 0xa5, 0x5c, 0xff);
-	Ray r1({ 300, 300 }, { 400, 300 }, 0xfd, 0xa5, 0x5c, 0xff);
+	Ray r1({ 300, 300 }, { 400, 300 }, 50, 0xfd, 0xa5, 0x5c, 0xff);
 
 	SDL_Rect obstacle1{ 150, 100, 250, 80 };
 	SDL_Rect obstacle2{ 950, 200, 80, 300 };

@@ -62,7 +62,7 @@ void LightSource::RenderRays(SDL_Renderer* renderer, const SDL_Rect* obstacles, 
 
 	for (int i = 0; i < nb_rays; i++) {
 		SDL_Point p1 = { x + radius * std::cos(i * angle_increment), y - radius * std::sin(i * angle_increment) };
-		Ray ray(origin, p1);
+		Ray ray(origin, p1, 0);
 		ray.SetColor(r, g, b, a);
 		ray.Draw(renderer, obstacles, count);
 		rays.push_back(ray);
