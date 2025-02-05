@@ -1,12 +1,21 @@
 #include "rays.h"
 
-SDL_Point Ray::CalculateCollisionPoint(const SDL_Point point_start, const SDL_Rect* obstacles, const int count) {
+void Ray::SetOrigin(const SDL_Point new_origin) {
+	origin = new_origin;
+}
+void Ray::SetP1(const SDL_Point new_p1) {
+	p1 = new_p1;
+}
+
+SDL_Point Ray::CalculateCollisionPoint(
+	const SDL_Point point_start, const double a, const SDL_Rect* obstacles, const int count) {
+
 	SDL_Point point_collision = { -1, -1 };
 	int distance = 0;
 	bool x_ok = false, y_ok = false, collides = false;
 	while (x_ok == false && y_ok == false && collides == false) {
-		point_collision.x = p1.x + distance * std::cos(angle);
-		point_collision.y = p1.y - distance * std::sin(angle);
+		point_collision.x = p1.x + distance * std::cos(a);
+		point_collision.y = p1.y - distance * std::sin(a);
 		for (int i = 0; i < count; i++) {
 			SDL_Rect pixel = { point_collision.x, point_collision.y, 1, 1 };
 			if (SDL_HasIntersection(&obstacles[i], &pixel)) {
@@ -25,7 +34,8 @@ void Ray::SetColor(const Uint8 new_r, const Uint8 new_g, const Uint8 new_b, cons
 }
 
 void Ray::Draw(SDL_Renderer* renderer, const SDL_Rect* obstacles, const int count) {
-	SDL_Point p2 = CalculateCollisionPoint(p1, obstacles, count);
+	angle = std::atan2(origin.y - p1.y, p1.x - origin.x);
+	SDL_Point p2 = CalculateCollisionPoint(p1, angle, obstacles, count);
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 	SDL_RenderDrawLine(renderer, p1.x, p1.y, p2.x, p2.y);
 }

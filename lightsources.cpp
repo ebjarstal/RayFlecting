@@ -1,5 +1,12 @@
 #include "lightsources.h"
 
+const double LightSource::GetRadius() const {
+	return radius;
+}
+void LightSource::SetRadius(const double new_radius) {
+	if (new_radius > 1) radius = new_radius;
+}
+
 void LightSource::SetColor(const Uint8 new_r, const Uint8 new_g, const Uint8 new_b, const Uint8 new_a) {
 	r = new_r; g = new_g; b = new_b; a = new_a;
 }

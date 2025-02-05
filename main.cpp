@@ -1,8 +1,7 @@
 #include <iostream>
 #include "lightsources.h"
 
-// TODO: - Change LightSource size with mouse wheel
-//       - Fix hair on lightsource circle
+// TODO: - Change LightSource size with mouse wheel -> DONE
 //       - Collisions with other shapes: create an abstract Obstacle class ?
 //       - Fix Ray distribution ? -> start calculating line from origin instead of p1 ? then only draw once > p1
 
@@ -22,7 +21,8 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
-	LightSource ls1(100, 100, 100, 1000, 0xfd, 0xa5, 0x5c, 0xff);
+	// LightSource ls1(100, 100, 100, 100, 0xfd, 0xa5, 0x5c, 0xff);
+	Ray r1({ 300, 300 }, { 400, 300 }, 0xfd, 0xa5, 0x5c, 0xff);
 
 	SDL_Rect obstacle1{ 150, 100, 250, 80 };
 	SDL_Rect obstacle2{ 950, 200, 80, 300 };
@@ -39,15 +39,25 @@ int main(int argc, char* argv[]) {
 			if (event.type == SDL_QUIT) {
 				is_running = false;
 			}
-			if (event.type == SDL_MOUSEMOTION && event.button.button == 1) {
+			if (event.type == SDL_MOUSEMOTION) {
 				int mouse_x, mouse_y;
 				SDL_GetMouseState(&mouse_x, &mouse_y);
-				ls1.Move(mouse_x, mouse_y);
+				// ls1.Move(mouse_x, mouse_y);
+				if (event.button.button == 1) {
+					r1.SetP1({ mouse_x, mouse_y });
+				}
+				if (event.button.button == 4) {
+					r1.SetOrigin({ mouse_x, mouse_y });
+				}
+			}
+			if (event.type == SDL_MOUSEWHEEL) {
+				// ls1.SetRadius(ls1.GetRadius() + 3*event.wheel.y);
 			}
 		}
 
 		// RENDER OBJECTS ON SCREEN
-		ls1.Render(renderer, obstacles, 3, LS_CIRCLE);
+		// ls1.Render(renderer, obstacles, 3, LS_CIRCLE);
+		r1.Draw(renderer, obstacles, 3);
 		SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
 		SDL_RenderFillRects(renderer, obstacles, 3);
 

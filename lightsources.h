@@ -2,7 +2,6 @@
 
 #include "constants.h"
 #include "rays.h"
-#include <vector>
 
 enum LS_TYPE {
 	LS_CIRCLE,
@@ -28,6 +27,9 @@ public:
 	LightSource(int x_init, int y_init, double rd_init, int n, Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha) :
 		x(x_init), y(y_init), radius(rd_init), r(red), g(green), b(blue), a(alpha), nb_rays(n) {
 	}
+
+	const double GetRadius() const;
+	void SetRadius(const double new_radius);
 
 	void SetColor(const Uint8 new_r, const Uint8 new_g, const Uint8 new_b, const Uint8 new_a);
 	void Render(SDL_Renderer* renderer, const SDL_Rect* obstacles, const int count, const LS_TYPE type);
