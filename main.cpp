@@ -20,9 +20,12 @@ int main(int argc, char* argv[]) {
 		EndProgram(window, renderer);
 		return 1;
 	}
+	SDL_SetWindowTitle(window, "Rayflect (mdr)");
 
-	// LightSource ls1(100, 100, 100, 100, 0xfd, 0xa5, 0x5c, 0xff);
-	Ray r1({ 300, 300 }, { 400, 300 }, 50, 0xfd, 0xa5, 0x5c, 0xff);
+	LightSource ls1(100, 100, 100, 200, 0xfd, 0xa5, 0x5c, 0xff);
+	Ray r1({ 300, 300 }, { 400, 300 }, 2, 0xfd, 0xa5, 0x5c, 0xff);
+
+	bool ls_or_r = 0;
 
 	SDL_Rect obstacle1{ 150, 100, 250, 80 };
 	SDL_Rect obstacle2{ 950, 200, 80, 300 };
@@ -42,22 +45,32 @@ int main(int argc, char* argv[]) {
 			if (event.type == SDL_MOUSEMOTION) {
 				int mouse_x, mouse_y;
 				SDL_GetMouseState(&mouse_x, &mouse_y);
-				// ls1.Move(mouse_x, mouse_y);
 				if (event.button.button == 1) {
-					r1.SetP1({ mouse_x, mouse_y });
+					if (ls_or_r == 0) ls1.Move(mouse_x, mouse_y);
+					else r1.SetP1({ mouse_x, mouse_y });
 				}
 				if (event.button.button == 4) {
-					r1.SetOrigin({ mouse_x, mouse_y });
+					if (ls_or_r == 1) r1.SetOrigin({ mouse_x, mouse_y });
 				}
 			}
 			if (event.type == SDL_MOUSEWHEEL) {
-				// ls1.SetRadius(ls1.GetRadius() + 3*event.wheel.y);
+				if (ls_or_r == 0) ls1.SetRadius(ls1.GetRadius() + 3 * event.wheel.y);
+				else r1.AddReflection(event.wheel.y);
+			}
+			if (event.type == SDL_KEYDOWN) {
+				if (event.key.keysym.sym == SDLK_1) {
+					ls_or_r = 0;
+				}
+				if (event.key.keysym.sym == SDLK_2) {
+					ls_or_r = 1;
+				}
 			}
 		}
 
 		// RENDER OBJECTS ON SCREEN
-		// ls1.Render(renderer, obstacles, 3, LS_CIRCLE);
-		r1.Draw(renderer, obstacles, 3);
+		if (ls_or_r == 0) ls1.Render(renderer, obstacles, 3, LS_CIRCLE);
+		else r1.Draw(renderer, obstacles, 3);
+
 		SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
 		SDL_RenderFillRects(renderer, obstacles, 3);
 

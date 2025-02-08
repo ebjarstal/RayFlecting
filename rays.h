@@ -15,7 +15,9 @@ private:
 		const SDL_Point point_start, const double a, const SDL_Rect* obstacles, const int count) const;
 
 	int nb_reflections;
-	SDL_Point CalculateReflection(const SDL_Point start_point, SDL_Point* end_point, double* r_a) const;
+	void CalculateReflection(
+		const SDL_Point p1_start, SDL_Point* p2_end, double* r_a, SDL_Point* p1_prime,
+		const SDL_Rect* obstacles, const int count) const;
 public:
 	Ray(SDL_Point o, SDL_Point p, int n) :
 		origin(o), p1(p), p2({0, 0}),
@@ -34,4 +36,5 @@ public:
 	void SetColor(const Uint8 new_r, const Uint8 new_g, const Uint8 new_b, const Uint8 new_a);
 	void Draw(SDL_Renderer* renderer, const SDL_Rect* obstacles, const int count);
 	void DrawReflections(SDL_Renderer* renderer, const SDL_Rect* obstacles, const int count);
+	void AddReflection(const int n) { if (nb_reflections > 1) nb_reflections += n; }
 };
