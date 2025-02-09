@@ -141,12 +141,14 @@
     <ClCompile Include="lightsources.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="obstacles.cpp" />
+    <ClCompile Include="RayFlect.cpp" />
     <ClCompile Include="rays.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h" />
     <ClInclude Include="lightsources.h" />
     <ClInclude Include="obstacles.h" />
+    <ClInclude Include="RayFlect.h" />
     <ClInclude Include="rays.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

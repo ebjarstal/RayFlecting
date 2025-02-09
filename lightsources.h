@@ -20,6 +20,8 @@ private:
 	void RenderFill(SDL_Renderer* renderer, const SDL_Rect* obstacles, const int count);
 	void RenderRays(SDL_Renderer* renderer, const SDL_Rect* obstacles, const int count);
 public:
+	LightSource() : x(0), y(0), radius(0), r(0), g(0), b(0), a(0), nb_rays(0) {}
+
 	LightSource(int x_init, int y_init, double rd_init, int n) :
 		x(x_init), y(y_init), radius(rd_init), r(0xff), g(0xff), b(0xff), a(0xff), nb_rays(n) {
 	}

@@ -122,3 +122,8 @@ void Ray::CalculateReflection(
 		}
 	}
 }
+
+void Ray::AddReflection(const int n) { 
+	if (nb_reflections > 0) nb_reflections += n;
+	else if (nb_reflections <= 0 && n > 0) nb_reflections += n;
+}

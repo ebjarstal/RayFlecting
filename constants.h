@@ -1,4 +1,8 @@
 #pragma once
 
-#define W_WIDTH 1280
-#define W_HEIGHT 720
+#define W_WIDTH 800
+#define W_HEIGHT 800
+
+#define DEFAULT_LIGHTSOURCE_RADIUS 50
+#define DEFAULT_RAYS_AMOUNT 128
+#define DEFAULT_REFLECTIONS_AMOUNT 0

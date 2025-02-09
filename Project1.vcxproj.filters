@@ -27,6 +27,9 @@
     <ClCompile Include="obstacles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RayFlect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rays.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="obstacles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RayFlect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
