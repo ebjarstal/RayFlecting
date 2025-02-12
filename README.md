@@ -1,8 +1,9 @@
 # RayFlect
 
-![image](https://github.com/user-attachments/assets/deca477a-5e87-4b97-8ad8-050cc6406f0a)
-
-![image](https://github.com/user-attachments/assets/b10f746b-006d-43c6-ae2a-0399fb51908d)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/deca477a-5e87-4b97-8ad8-050cc6406f0a" width="300">
+  <img src="https://github.com/user-attachments/assets/b10f746b-006d-43c6-ae2a-0399fb51908d" width="300">
+</p>
 
 RayFlect is a graphical application that uses the SDL (Simple DirectMedia Layer) library to render and interact with light sources and rays. The application allows users to manipulate these objects through mouse and keyboard inputs.
 
